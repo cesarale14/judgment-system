@@ -1,0 +1,37 @@
+id: EM-000003
+type: emission
+model: MODEL-0/sales             # Luxe Shine weekly job volume — gut baseline, Phase 0, week 1
+created: 2026-07-11
+agent: human                     # REQUIRED — see capture protocol
+self_selected: false             # externally assigned (Claude)
+influence: high                  # you sell, schedule, and staff these jobs
+benchmark_at_entry: none         # no external benchmark; dumb baseline at resolution
+
+question: >
+  Cleaning jobs completed by Luxe Shine Solutions LLC with
+  service dates 2026-07-13 through 2026-07-19 inclusive.
+
+resolution_criteria: >
+  Count of cleaning jobs completed by Luxe Shine Solutions LLC
+  with service dates 2026-07-13 through 2026-07-19 inclusive, as
+  recorded in company records/invoicing at 2026-07-21 12:00 ET.
+  One job = one billed service visit at one property on one
+  service date; separately billed units count separately.
+  Cancelled and no-show visits excluded. Outcome space:
+  non-negative integer.
+
+resolve_by: 2026-07-21T12:00-04:00   # same read as EM-000001
+
+# ── CAPTURE — fill these three fields and nothing else ──────────
+interval_90:
+  low: 0
+  high: 4
+point: 2                         # captured 2026-07-11, pre-consultation
+
+# ── RESOLUTION (leave empty until 2026-07-21) ───────────────────
+resolved_at:
+outcome:
+coverage_hit:                    # outcome within [low, high]?
+dumb_baseline: >                 # trailing 4-week mean completed
+                                 # jobs — compute AT RESOLUTION
+                                 # from records, never before capture.
