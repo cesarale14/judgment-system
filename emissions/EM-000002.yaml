@@ -1,0 +1,35 @@
+id: EM-000002
+type: emission
+model: MODEL-0/markets-crypto    # gut baseline, Phase 0, week 1
+created: 2026-07-11
+agent: human                     # REQUIRED — see capture protocol
+self_selected: false             # externally assigned (Claude)
+influence: none                  # exogenous stratum — you cannot move this number
+benchmark_at_entry: >
+  Carry-forward: Coinbase BTC-USD 1-minute candle close at your
+  commit timestamp. Retrieve at resolution from exchange history.
+  Do not look it up before capture.
+
+question: >
+  BTC-USD spot price at 2026-07-18 12:00 ET.
+
+resolution_criteria: >
+  Coinbase BTC-USD 1-minute candle close for 12:00:00 ET on
+  2026-07-18, in USD. If Coinbase is unavailable for that minute,
+  use Kraken XBT/USD same timestamp; if both unavailable, nearest
+  prior 1-minute close. Outcome space: positive real, USD.
+
+resolve_by: 2026-07-18T12:00-04:00
+
+# ── CAPTURE — fill these three fields and nothing else ──────────
+interval_90:
+  low: 82000
+  high: 165000
+point: 118000                    # captured 2026-07-11, pre-consultation
+
+# ── RESOLUTION (leave empty until 2026-07-18) ───────────────────
+resolved_at:
+outcome:
+coverage_hit:                    # outcome within [low, high]?
+dumb_baseline_value:             # carry-forward spot at commit time,
+                                 # retrieved at resolution
