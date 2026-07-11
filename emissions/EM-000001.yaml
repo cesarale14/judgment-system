@@ -1,0 +1,33 @@
+id: EM-000001
+type: emission
+model: MODEL-0/str-ops
+created: 2026-07-11
+agent: human+ai
+self_selected: false
+influence: high
+benchmark_at_entry: none
+
+question: >
+  Occupied unit-nights across the five Tampa listings,
+  check-in dates 2026-07-13 through 2026-07-19 inclusive.
+
+resolution_criteria: >
+  Count of unit-nights carrying a confirmed, non-cancelled guest
+  reservation across all five Tampa listings for stay dates
+  2026-07-13 through 2026-07-19 inclusive, as shown in the PMS at
+  2026-07-21 12:00 ET. A night cancelled and rebooked counts if
+  occupied at the resolution read. Owner blocks and maintenance
+  holds count as unoccupied. Outcome space: integer, 0–35.
+
+resolve_by: 2026-07-21T12:00-04:00
+
+interval_90:
+  low: 8
+  high: 29
+
+point: 19
+
+resolved_at:
+outcome:
+coverage_hit:
+dumb_baseline:
