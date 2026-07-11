@@ -1,0 +1,35 @@
+id: EM-000004
+type: emission
+model: MODEL-0/weather           # exogenous anchor basket — gut baseline, Phase 0, week 1
+format: binary                   # first Brier-stream emission
+created: 2026-07-11
+agent: human                     # REQUIRED — see capture protocol
+self_selected: false             # externally assigned (Claude)
+influence: none                  # fully exogenous
+benchmark_at_entry: >
+  NWS probability-of-precipitation for KTPA 2026-07-15 as of
+  capture time — retrieve retroactively at resolution from
+  forecast archives (best effort). Do not look up before capture.
+
+question: >
+  Measurable precipitation at Tampa International Airport (KTPA)
+  on 2026-07-15.
+
+resolution_criteria: >
+  YES if the NWS daily climate report / NCEI record for KTPA
+  shows precipitation ≥ 0.01 inch for the calendar date
+  2026-07-15 (local time); NO if 0.00 or trace. Read the record
+  at 2026-07-17 12:00 ET. Outcome space: binary.
+
+resolve_by: 2026-07-17T12:00-04:00   # fastest resolution in the ledger
+
+# ── CAPTURE — fill this one field and nothing else ──────────────
+p: 0.62                          # captured 2026-07-11, pre-consultation
+
+# ── RESOLUTION (leave empty until 2026-07-17) ───────────────────
+resolved_at:
+outcome:                         # yes | no
+brier:                           # (p − o)²
+dumb_baseline_p: >               # July climatological frequency of
+                                 # measurable-precip days at KTPA —
+                                 # retrieve at resolution, never before.
